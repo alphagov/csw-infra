@@ -17,31 +17,35 @@ Because the tfstate lives in a separate folder you can have multiple independent
 
 ### Creating an environment 
 
-1. Create a folder for your environment 
+1. Create a folder in tools/csw/environments for your environment 
+	your name for a dev env or uat, qa, prod... 
 
-	`mkdir uat`
-	`cd uat`
+2. Copy the tfvars files from example environment and populate the <placeholders>
 
-2. Copy the variables.tf and secrets folder from /env
-3. Customize the variables file 
+Environments are ignored by default except for the placeholder example_environment. 
 
-	1. Add your environment name as a prefix 
-	2. Add the next available subnet range to all the CIDRs
-	3. Add a default RDS root password in secrets
+*TODO We need to find a way to store and share the tfvars file for test and production environments*
 
-4. Symlink terraform files into your environment 
-	
-	`ln -fs ../terraform/*.tf .`
+### Initialising or switching environment
 
-5. Initialise terraform 
-	
-	`terraform init`
+Change directory to `tools/csw` 	
 
-6. Run terraform 
+`terraform init -backend-config=environments/<your env>/backend.tfvars -var-file=environments/<your env>/apply.tfvars -reconfigure`
 
-	`terraform apply`
+Because it's running in the same folder if you go switch the apply.tfvars for a different env you first need to tell 
+terraform to use the different backend-config and -reconfigure makes it reload the backend state if it's already defined
 
-7. Delete your environment 
+### Test the configuration	
 
-	`terraform destroy`
+Change directory to `tools/csw` 	
+
+`terraform plan -var-file=environments/<your env>/apply.tfvars`
+
+If init runs successfully without errors you should be OK to apply 
+
+### Apply the configuration 
+
+Change directory to `tools/csw` 	
+
+`terraform apply -var-file=environments/<your env>/apply.tfvars`
 

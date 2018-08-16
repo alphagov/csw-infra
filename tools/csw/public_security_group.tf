@@ -1,5 +1,5 @@
 resource "aws_security_group" "public_security_group" {
-  name        = "${var.prefix}-sg-public"
+  name        = "${var.tool}-${var.environment}-sg-public"
   description = "Allow incoming HTTP connections."
 
   ingress {
@@ -38,6 +38,6 @@ resource "aws_security_group" "public_security_group" {
   vpc_id = "${module.vpc.vpc_id_out}"
 
   tags {
-    Name = "${var.prefix}-sg-public"
+    Name = "${var.tool}-${var.environment}-sg-public"
   }
 }
