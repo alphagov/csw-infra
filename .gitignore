@@ -1,14 +1,14 @@
 #  Local .terraform directories
 **/.terraform/*
 
+**/.DS_Store
 # .tfstate files
-*.tfstate
-*.tfstate.*
+**/*.tfstate
+**/*.tfstate.*
 
 # .tfvars files
-*.tfvars
+**/*.tfvars
 
-/dan
-/andrea
-/tom
+tools/csw/environments/*/*
 
+!tools/csw/environments/example_environment/*.tfvars
