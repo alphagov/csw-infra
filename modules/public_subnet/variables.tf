@@ -1,5 +1,4 @@
 variable "vpc_id" {}
-variable "igw_id" {}
 variable "prefix" {}
 
 variable "subnet_zone" {

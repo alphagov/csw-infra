@@ -1,5 +1,13 @@
-output "public_subnet_nat_public_ip_out" {
+output "nat_public_ip_out" {
   value = "${module.nat_gateway.eip_public_ip_out}"
+}
+
+output "nat_eip_id_out" {
+  value = "${module.nat_gateway.eip_id_out}"
+}
+
+output "nat_id_out" {
+  value = "${module.nat_gateway.ngw_id_out}"
 }
 
 output "public_subnet_id_out" {

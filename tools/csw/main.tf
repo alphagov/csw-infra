@@ -10,7 +10,6 @@ module "public_subnet_1" {
   source            = "../../modules/public_subnet/"
   vpc_id            = "${module.vpc.vpc_id_out}"
   prefix            = "${var.tool}-${var.environment}"
-  igw_id            = "${module.vpc.igw_id_out}"
   subnet_zone       = "${var.region}a"
   subnet_cidr_block = "${var.ip_16bit_prefix}.1.0/24"
 }
@@ -19,7 +18,6 @@ module "public_subnet_2" {
   source            = "../../modules/public_subnet/"
   vpc_id            = "${module.vpc.vpc_id_out}"
   prefix            = "${var.tool}-${var.environment}"
-  igw_id            = "${module.vpc.igw_id_out}"
   subnet_zone       = "${var.region}b"
   subnet_cidr_block = "${var.ip_16bit_prefix}.2.0/24"
 }
