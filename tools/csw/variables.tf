@@ -11,6 +11,7 @@ variable "tool" {
 }
 
 variable "environment" {}
+variable "host_account_id" {}
 
 variable "ip_16bit_prefix" {
   description = "Each VPC is created with a /16 bit mask meaning that if whilst they don't need to be addressable we should be able to keep all the internal IPs unique"
