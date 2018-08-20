@@ -17,15 +17,6 @@ resource "aws_security_group" "rds_security_group" {
     ]
   }
 
-  # Allow all outbound traffic.
-  egress {
-    from_port = 0
-    to_port   = 0
-    protocol  = "tcp"
-
-    cidr_blocks = ["${var.private_subnet_cidr_blocks}"]
-  }
-
   tags {
     Name = "${var.prefix}-rds-security-group"
   }
