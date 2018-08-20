@@ -3,13 +3,6 @@ resource "aws_security_group" "public_security_group" {
   description = "Allow incoming HTTP connections."
 
   ingress {
-    from_port   = 80
-    to_port     = 80
-    protocol    = "tcp"
-    cidr_blocks = ["0.0.0.0/0"]
-  }
-
-  ingress {
     from_port   = 443
     to_port     = 443
     protocol    = "tcp"
