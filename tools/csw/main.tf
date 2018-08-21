@@ -70,3 +70,9 @@ module "rds" {
 
   public_security_group_id = "${aws_security_group.public_security_group.id}"
 }
+
+module "lambda_exec_role" {
+  source     = "../../modules/agent_role"
+  prefix     = "${var.prefix}"
+  account_id = "${var.host_account_id}"
+}

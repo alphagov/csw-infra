@@ -2,8 +2,9 @@
 # set variables which may differ between environments and deployments
 
 tool = "csw"
-environment = "<insert env name>"
+environment = "<environment name>"
 prefix = "${var.tool}-${var.environment}"
+host_account_id = "<insert account_id the env runs in>"
 
 region = "eu-west-2"
 # these are not used at present but we could switch to define things using count across this array
