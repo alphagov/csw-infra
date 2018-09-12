@@ -2,37 +2,74 @@
     "Version": "2012-10-17",
     "Statement": [
         {
-            "Sid": "Statement0",
-            "Effect": "Allow",
-            "Action": "sts:AssumeRole",
-            "Resource": "arn:aws:iam::*:role/${prefix}_CstSecurityInspectorRole"
-        },
-        {
-            "Sid": "Statement1",
+            "Sid": "VisualEditor0",
             "Effect": "Allow",
             "Action": [
-                "logs:CreateLogGroup",
+                "sts:AssumeRole"
+            ],
+            "Resource": [
+                "arn:aws:iam::*:role/csw-dan_CstSecurityInspectorRole"
+            ]
+        },
+        {
+            "Sid": "VisualEditor1",
+            "Effect": "Allow",
+            "Action": [
+                "ec2:CreateNetworkInterface",
+                "ec2:DetachNetworkInterface",
+                "ec2:DescribeNetworkInterfaces",
+                "ec2:DeleteNetworkInterface"
+            ],
+            "Resource": "*"
+        },
+        {
+            "Sid": "VisualEditor2",
+            "Effect": "Allow",
+            "Action": [
+            	"logs:CreateLogGroup",
                 "logs:CreateLogStream",
                 "logs:PutLogEvents"
             ],
             "Resource": "arn:aws:logs:*:*:*"
         },
         {
-            "Sid": "Statement2",
+            "Sid": "VisualEditor3",
             "Effect": "Allow",
             "Action": [
-                "ec2:CreateNetworkInterface",
-                "ec2:DescribeNetworkInterfaces",
-                "ec2:DetachNetworkInterface",
-                "ec2:DeleteNetworkInterface"
+                "sqs:DeleteMessage",
+                "sqs:GetQueueUrl",
+                "sqs:SendMessageBatch",
+                "sqs:ReceiveMessage",
+                "sqs:SendMessage",
+                "sqs:GetQueueAttributes"
+            ],
+            "Resource": "arn:aws:sqs:${region}:${account_id}:*"
+        },
+        {
+            "Sid": "VisualEditor4",
+            "Effect": "Allow",
+            "Action": [
+                "secretsmanager:GetSecretValue"
+            ],
+            "Resource": [
+                "arn:aws:secretsmanager:${region}:${account_id}:secret:*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor5",
+            "Effect": "Allow",
+            "Action": [
+                "support:DescribeTrustedAdvisorChecks"
             ],
             "Resource": "*"
         },
         {
-            "Sid": "Statement3",
+            "Sid": "VisualEditor6",
             "Effect": "Allow",
-            "Action": "secretsmanager:GetSecretValue",
-            "Resource": "arn:aws:secretsmanager:eu-west-2:${account_id}:secret:*"
+            "Action": [
+                "ec2:DescribeRegions"
+            ],
+            "Resource": "*"
         }
     ]
 }

@@ -6,9 +6,25 @@ module "vpc" {
   vpc_cidr_block = "${var.ip_16bit_prefix}.0.0/16"
 }
 
+module "jump_subnet" {
+  source                   = "../../modules/jump_subnet/"
+  vpc_id                   = "${module.vpc.vpc_id_out}"
+  region                   = "${var.region}"
+  amis                     = "${var.amis}"
+  igw_id                   = "${module.vpc.igw_id_out}"
+  prefix                   = "${var.tool}-${var.environment}"
+  subnet_zone              = "${var.region}c"
+  subnet_cidr_block        = "${var.ip_16bit_prefix}.5.0/24"
+  ssh_key_name             = "${var.ssh_key_name}"
+  ssh_public_key_path      = "${var.ssh_public_key_path}"
+  public_security_group_id = "${aws_security_group.public_security_group.id}"
+}
+
 module "public_subnet_1" {
   source            = "../../modules/public_subnet/"
   vpc_id            = "${module.vpc.vpc_id_out}"
+  igw_id            = "${module.vpc.igw_id_out}"
+  nat_subnet_id     = "${module.jump_subnet.public_subnet_id_out}"
   prefix            = "${var.tool}-${var.environment}"
   subnet_zone       = "${var.region}a"
   subnet_cidr_block = "${var.ip_16bit_prefix}.1.0/24"
@@ -17,6 +33,8 @@ module "public_subnet_1" {
 module "public_subnet_2" {
   source            = "../../modules/public_subnet/"
   vpc_id            = "${module.vpc.vpc_id_out}"
+  igw_id            = "${module.vpc.igw_id_out}"
+  nat_subnet_id     = "${module.jump_subnet.public_subnet_id_out}"
   prefix            = "${var.tool}-${var.environment}"
   subnet_zone       = "${var.region}b"
   subnet_cidr_block = "${var.ip_16bit_prefix}.2.0/24"
@@ -36,20 +54,6 @@ module "private_subnet_2" {
   prefix            = "${var.tool}-${var.environment}"
   subnet_zone       = "${var.region}b"
   subnet_cidr_block = "${var.ip_16bit_prefix}.4.0/24"
-}
-
-module "jump_subnet" {
-  source                   = "../../modules/jump_subnet/"
-  vpc_id                   = "${module.vpc.vpc_id_out}"
-  region                   = "${var.region}"
-  amis                     = "${var.amis}"
-  igw_id                   = "${module.vpc.igw_id_out}"
-  prefix                   = "${var.tool}-${var.environment}"
-  subnet_zone              = "${var.region}c"
-  subnet_cidr_block        = "${var.ip_16bit_prefix}.5.0/24"
-  ssh_key_name             = "${var.ssh_key_name}"
-  ssh_public_key_path      = "${var.ssh_public_key_path}"
-  public_security_group_id = "${aws_security_group.public_security_group.id}"
 }
 
 module "rds" {
@@ -74,5 +78,6 @@ module "rds" {
 module "lambda_exec_role" {
   source     = "../../modules/agent_role"
   prefix     = "${var.prefix}"
+  region     = "${var.region}"
   account_id = "${var.host_account_id}"
 }

@@ -28,6 +28,27 @@ resource "aws_security_group" "public_security_group" {
     ]
   }
 
+  egress {
+    from_port = 22  # Bastion > dev box
+    to_port   = 22
+    protocol  = "tcp"
+
+    cidr_blocks = [
+      "${module.public_subnet_1.public_subnet_cidr_block_out}",
+      "${module.public_subnet_2.public_subnet_cidr_block_out}",
+    ]
+  }
+
+  egress {
+    from_port = 443
+    to_port   = 443
+    protocol  = "tcp"
+
+    cidr_blocks = [
+      "0.0.0.0/0",
+    ]
+  }
+
   vpc_id = "${module.vpc.vpc_id_out}"
 
   tags {

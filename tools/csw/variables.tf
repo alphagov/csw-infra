@@ -6,6 +6,8 @@ variable "postgres_root_password" {}
 variable "ssh_key_name" {}
 variable "ssh_public_key_path" {}
 
+variable "bucket_name" {}
+
 variable "tool" {
   default = "csw"
 }
@@ -31,8 +33,10 @@ variable "region" {
 variable "amis" {
   description = "AMIs by region"
 
+  # Ubuntu Server 16.04 LTS (HVM), SSD Volume Type
   default = {
-    eu-west-2 = "ami-6b3fd60c" # Ubuntu Server 16.04 LTS (HVM), SSD Volume Type
+    eu-west-2 = "ami-c7ab5fa0"
+    eu-west-1 = "ami-0181f8d9b6f098ec4"
   }
 }
 
