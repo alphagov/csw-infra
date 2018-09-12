@@ -43,7 +43,7 @@
                 "sqs:SendMessage",
                 "sqs:GetQueueAttributes"
             ],
-            "Resource": "arn:aws:sqs:eu-west-1:103495720024:*"
+            "Resource": "arn:aws:sqs:${region}:${account_id}:*"
         },
         {
             "Sid": "VisualEditor4",
@@ -52,7 +52,7 @@
                 "secretsmanager:GetSecretValue"
             ],
             "Resource": [
-                "arn:aws:secretsmanager:eu-west-1:103495720024:secret:*"
+                "arn:aws:secretsmanager:${region}:${account_id}:secret:*"
             ]
         },
         {

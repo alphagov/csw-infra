@@ -6,6 +6,8 @@ variable "postgres_root_password" {}
 variable "ssh_key_name" {}
 variable "ssh_public_key_path" {}
 
+variable "bucket_name" {}
+
 variable "tool" {
   default = "csw"
 }

@@ -2,8 +2,9 @@ data "template_file" "policy" {
   template = "${file("${path.module}/json/policy.json")}"
 
   vars {
-    prefix     = "${var.prefix}"
-    account_id = "${var.account_id}"
+    prefix      = "${var.prefix}"
+    region      = "${var.region}"
+    account_id  = "${var.account_id}"
   }
 }
 
