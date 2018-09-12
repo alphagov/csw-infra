@@ -17,3 +17,7 @@ output "public_subnet_id_out" {
 output "public_route_table_id_out" {
   value = "${aws_route_table.public_route_table.id}"
 }
+
+output "public_subnet_cidr_block_out" {
+  value = "${aws_subnet.public_subnet.cidr_block}"
+}
