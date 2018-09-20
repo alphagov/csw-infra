@@ -43,6 +43,19 @@
             "Resource": [
                 "arn:aws:secretsmanager:${region}:${account_id}:secret:*"
             ]
+        },
+        {
+            "Sid": "VisualEditor4",
+            "Effect": "Allow",
+            "Action": [
+                "events:PutRule",
+                "events:PutTargets",
+                "events:RemoveTargets",
+                "events:DeleteRule"
+            ],
+            "Resource": [
+                "arn:aws:events:${region}:${account_id}:rule/*"
+            ]
         }
     ]
 }

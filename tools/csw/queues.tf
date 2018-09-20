@@ -28,7 +28,7 @@ resource "aws_sqs_queue" "evaluated_metric_queue" {
 resource "aws_sqs_queue" "completed_audit_queue" {
   name = "${var.tool}-${var.environment}-completed-audit-queue"
   delay_seconds                 = 5
-  max_message_size              = 2048
+  max_message_size              = 16386
   message_retention_seconds     = 86400
   receive_wait_time_seconds     = 10
   visibility_timeout_seconds    = 60
