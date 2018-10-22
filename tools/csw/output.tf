@@ -14,7 +14,7 @@ output "rds_security_group_id" {
   value = "${module.rds.rds_security_group_id_out}"
 }
 
-output "rds_connection_string_out" {
+output "rds_connection_string" {
   value = "${module.rds.rds_connection_string_out}"
 }
 
