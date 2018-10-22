@@ -59,12 +59,25 @@
             "Sid": "VisualEditor5",
             "Effect": "Allow",
             "Action": [
+                "ssm:GetParameter",
+                "ssm:GetParameters"
+            ],
+            "Resource": [
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/google/*",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/terraform/*",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/{$prefix}/*"
+            ]
+        },
+        {
+            "Sid": "VisualEditor6",
+            "Effect": "Allow",
+            "Action": [
                 "support:DescribeTrustedAdvisorChecks"
             ],
             "Resource": "*"
         },
         {
-            "Sid": "VisualEditor6",
+            "Sid": "VisualEditor7",
             "Effect": "Allow",
             "Action": [
                 "ec2:DescribeRegions"
