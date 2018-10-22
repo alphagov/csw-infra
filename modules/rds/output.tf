@@ -11,5 +11,5 @@ output "rds_security_group_id_out" {
 }
 
 output "rds_connection_string_out" {
-  value = "${aws_db_instance.address}"
+  value = "${aws_db_instance.rds.address}"
 }
