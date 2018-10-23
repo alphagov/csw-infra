@@ -65,7 +65,7 @@
             "Resource": [
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/google/*",
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/terraform/*",
-                "arn:aws:ssm:${region}:${account_id}:parameter/csw/{$prefix}/*"
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${prefix}/*"
             ]
         },
         {
