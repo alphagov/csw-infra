@@ -56,6 +56,23 @@
             "Resource": [
                 "arn:aws:events:${region}:${account_id}:rule/*"
             ]
+        },
+        {
+            "Sid": "VisualEditor5",
+            "Effect": "Allow",
+            "Action": [
+                "ssm:GetParameter",
+                "ssm:GetParameters",
+                "ssm:PutParameter"
+            ],
+            "Resource": [
+                "arn:aws:ssm::${account_id}:parameter/csw/google/api-credentials",
+                "arn:aws:ssm::${account_id}:parameter/csw/terraform/states-bucket",
+                "arn:aws:ssm::${account_id}:parameter/csw/${prefix}/auth/token-secret",
+                "arn:aws:ssm::${account_id}:parameter/csw/${prefix}/rds/user",
+                "arn:aws:ssm::${account_id}:parameter/csw/${prefix}/rds/root"
+
+            ]
         }
     ]
 }

@@ -63,9 +63,9 @@
                 "ssm:GetParameters"
             ],
             "Resource": [
-                "arn:aws:ssm:${region}:${account_id}:parameter/csw/google/*",
-                "arn:aws:ssm:${region}:${account_id}:parameter/csw/terraform/*",
-                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${prefix}/*"
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/google/api-credentials",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${prefix}/auth/token-secret",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${prefix}/rds/user"
             ]
         },
         {
