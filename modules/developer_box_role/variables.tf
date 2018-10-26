@@ -1,4 +1,8 @@
 variable "prefix" {
+  default = "csw-prod"
+}
+
+variable "environment" {
   default = "prod"
 }
 

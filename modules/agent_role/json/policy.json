@@ -64,8 +64,8 @@
             ],
             "Resource": [
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/google/api-credentials",
-                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${prefix}/auth/token-secret",
-                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${prefix}/rds/user"
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${environment}/auth/token-secret",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${environment}/rds/user"
             ]
         },
         {
