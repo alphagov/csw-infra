@@ -63,6 +63,7 @@ resource "aws_security_group" "developer_security_group" {
 module "developer_box_role" {
   source            = "../../modules/developer_box_role"
   prefix            = "${var.prefix}"
+  environment       = "${var.environment}"
   region            = "${var.region}"
   bucket_name       = "${var.bucket_name}"
   account_id        = "${var.host_account_id}"
