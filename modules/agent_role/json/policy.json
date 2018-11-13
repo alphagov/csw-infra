@@ -8,7 +8,7 @@
                 "sts:AssumeRole"
             ],
             "Resource": [
-                "arn:aws:iam::*:role/csw-dan_CstSecurityInspectorRole"
+                "arn:aws:iam::*:role/csw-${environment}_CstSecurityInspectorRole"
             ]
         },
         {
