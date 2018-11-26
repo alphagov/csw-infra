@@ -18,6 +18,10 @@ output "rds_connection_string" {
   value = "${module.rds.rds_connection_string_out}"
 }
 
+output "rds_instance_id" {
+  value = "${module.rds.rds_id_out}"
+}
+
 output "bastion_public_ip" {
   value = "${module.jump_subnet.bastion_public_ip_out}"
 }
