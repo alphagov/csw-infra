@@ -15,6 +15,11 @@ availability_zones = ["${var.region}a","${var.region}b"]
 # 10.3 Sergio 
 # 10.4 Dan
 # 10.5 Rumy
+# 10.6 Deniz
+# 10.7 Ares
+
+# 10.100 UAT
+# 10.200 Live
 
 ip_16bit_prefix = "<insert ip prefix>" 
 
