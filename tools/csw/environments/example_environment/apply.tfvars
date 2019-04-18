@@ -10,9 +10,9 @@ region = "eu-west-2"
 # these are not used at present but we could switch to define things using count across this array
 availability_zones = ["${var.region}a","${var.region}b"]
 
-# 10.1 Andrea 
-# 10.2 Tom 
-# 10.3 Sergio 
+# 10.1 Andrea
+# 10.2 Tom
+# 10.3 Sergio
 # 10.4 Dan
 # 10.5 Rumy
 # 10.6 Deniz
@@ -21,7 +21,7 @@ availability_zones = ["${var.region}a","${var.region}b"]
 # 10.100 UAT
 # 10.200 Live
 
-ip_16bit_prefix = "<insert ip prefix>" 
+ip_16bit_prefix = "<insert ip prefix>"
 
 postres_root_password = "<insert root password>"
 
