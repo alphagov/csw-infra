@@ -32,7 +32,6 @@ variable "region" {
 
 variable "amis" {
   description = "AMIs by region"
-  type        = map(string)
   # Ubuntu Server 16.04 LTS (HVM), SSD Volume Type
   default     = {
     eu-west-2 = "ami-c7ab5fa0"
@@ -42,7 +41,6 @@ variable "amis" {
 
 variable "gds_public_cidrs" {
   description = "GDS public IP addresses"
-  type        = list(string)
   default     = [
     "213.86.153.212/32",
     "213.86.153.213/32",
