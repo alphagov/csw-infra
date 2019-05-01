@@ -29,7 +29,7 @@ resource "aws_security_group" "public_security_group" {
   }
 
   egress {
-    from_port = 22  # Bastion > dev box
+    from_port = 22    # Bastion > dev box
     to_port   = 22
     protocol  = "tcp"
 
