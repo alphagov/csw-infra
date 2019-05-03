@@ -2,9 +2,9 @@ data "template_file" "trust" {
   template = "${file("${path.module}/json/trust.json")}"
 
   vars {
-    prefix          = "${var.prefix}"
-    region          = "${var.region}"
-    account_id      = "${var.account_id}"
+    prefix     = "${var.prefix}"
+    region     = "${var.region}"
+    account_id = "${var.account_id}"
   }
 }
 
