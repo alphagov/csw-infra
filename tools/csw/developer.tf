@@ -8,7 +8,7 @@ resource "aws_security_group" "developer_security_group" {
     protocol  = "tcp"
 
     cidr_blocks = [
-        "${var.ip_16bit_prefix}.0.0/16"
+      "${var.ip_16bit_prefix}.0.0/16",
     ]
   }
 
@@ -61,12 +61,12 @@ resource "aws_security_group" "developer_security_group" {
 }
 
 module "developer_box_role" {
-  source            = "../../modules/developer_box_role"
-  prefix            = "${var.prefix}"
-  environment       = "${var.environment}"
-  region            = "${var.region}"
-  bucket_name       = "${var.bucket_name}"
-  account_id        = "${var.host_account_id}"
+  source      = "../../modules/developer_box_role"
+  prefix      = "${var.prefix}"
+  environment = "${var.environment}"
+  region      = "${var.region}"
+  bucket_name = "${var.bucket_name}"
+  account_id  = "${var.host_account_id}"
 }
 
 resource "aws_iam_instance_profile" "developer_box_instance_profile" {
@@ -89,6 +89,3 @@ resource "aws_instance" "developer" {
     Name = "${var.environment}-developer"
   }
 }
-
-
-

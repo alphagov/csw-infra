@@ -1,7 +1,7 @@
 resource "aws_security_group" "public_security_group" {
   description = "Allow incoming HTTP connections."
   name        = "${var.tool}-${var.environment}-sg-public"
-  vpc_id = "${module.vpc.vpc_id_out}"
+  vpc_id      = "${module.vpc.vpc_id_out}"
 
   ingress {
     from_port = 22
@@ -12,7 +12,7 @@ resource "aws_security_group" "public_security_group" {
   }
 
   egress {
-    from_port = 22  # Bastion > dev box
+    from_port = 22    # Bastion > dev box
     to_port   = 22
     protocol  = "tcp"
 
