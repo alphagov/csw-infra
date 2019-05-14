@@ -1,7 +1,7 @@
 data "aws_iam_policy_document" "assume-role" {
   statement {
-    effect        = "Allow"
-    actions       = ["sts:AssumeRole"]
+    effect  = "Allow"
+    actions = ["sts:AssumeRole"]
 
     principals = {
       type        = "AWS"
@@ -9,16 +9,14 @@ data "aws_iam_policy_document" "assume-role" {
     }
 
     condition {
-      test        = "IpAddress"
-      variable    = "aws:SourceIp"
-      values      = ["${var.source_cidrs}"]
+      test     = "IpAddress"
+      variable = "aws:SourceIp"
+      values   = ["${var.source_cidrs}"]
     }
-
   }
 }
 
 data "aws_iam_policy_document" "cd-defaults" {
-
   statement {
     sid = "1"
 
@@ -26,7 +24,7 @@ data "aws_iam_policy_document" "cd-defaults" {
       "iam:PassRole",
       "iam:GetRolePolicy",
       "iam:GetRole",
-      "iam:GetInstanceProfile"
+      "iam:GetInstanceProfile",
     ]
 
     resources = [
@@ -36,11 +34,10 @@ data "aws_iam_policy_document" "cd-defaults" {
   }
 
   statement {
-
     actions = [
       "apigateway:GET",
       "apigateway:PUT",
-      "apigateway:POST"
+      "apigateway:POST",
     ]
 
     resources = [
@@ -49,13 +46,12 @@ data "aws_iam_policy_document" "cd-defaults" {
   }
 
   statement {
-
     actions = [
       "lambda:List*",
       "lambda:Get*",
       "lambda:Update*",
       "lambda:Delete*",
-      "lambda:InvokeFunction"
+      "lambda:InvokeFunction",
     ]
 
     resources = [
@@ -65,48 +61,44 @@ data "aws_iam_policy_document" "cd-defaults" {
   }
 
   statement {
-
     actions = [
       "sqs:List*",
       "sqs:Get*",
       "sqs:SetQueueAttributes",
-      "sqs:CreateQueue"
+      "sqs:CreateQueue",
     ]
 
     resources = [
-      "arn:aws:sqs:${var.region}:*:csw-*"
+      "arn:aws:sqs:${var.region}:*:csw-*",
     ]
   }
 
   statement {
-
     actions = [
-      "ec2:Describe*"
+      "ec2:Describe*",
     ]
 
     resources = [
-      "*"
+      "*",
     ]
   }
 
   statement {
-
     actions = [
       "logs:CreateLogGroup",
       "logs:CreateLogStream",
-      "logs:PutLogEvents"
+      "logs:PutLogEvents",
     ]
 
     resources = [
-      "arn:aws:logs:${var.region}:*:log-group:/aws/lambda/csw-*"
+      "arn:aws:logs:${var.region}:*:log-group:/aws/lambda/csw-*",
     ]
   }
 
   statement {
-
     actions = [
       "rds:Describe*",
-      "rds:ListTagsForResource"
+      "rds:ListTagsForResource",
     ]
 
     resources = [
@@ -116,12 +108,11 @@ data "aws_iam_policy_document" "cd-defaults" {
   }
 
   statement {
-
     actions = [
       "s3:GetObject",
       "s3:PutObject",
       "s3:DeleteObject",
-      "s3:ListBucket"
+      "s3:ListBucket",
     ]
 
     resources = [
@@ -131,11 +122,10 @@ data "aws_iam_policy_document" "cd-defaults" {
   }
 
   statement {
-
     actions = [
       "events:Describe*",
       "events:PutRule",
-      "events:PutTargets"
+      "events:PutTargets",
     ]
 
     resources = [
@@ -144,20 +134,17 @@ data "aws_iam_policy_document" "cd-defaults" {
   }
 
   statement {
-
     actions = [
       "ssm:GetParameter",
       "ssm:GetParameters",
-      "ssm:PutParameter"
+      "ssm:PutParameter",
     ]
 
     resources = [
       "arn:aws:ssm:${var.region}:*:parameter/csw/*",
     ]
   }
-
 }
-
 
 resource "aws_iam_role" "cd" {
   name               = "cd-cybersecurity-tools-concourse-worker"
@@ -165,13 +152,12 @@ resource "aws_iam_role" "cd" {
 }
 
 resource "aws_iam_policy" "cd-defaults" {
-  name              = "concourse_policy"
-  policy            = "${data.aws_iam_policy_document.cd-defaults.json}"
+  name   = "concourse_policy"
+  policy = "${data.aws_iam_policy_document.cd-defaults.json}"
 }
 
-
 resource "aws_iam_policy_attachment" "cd-defaults" {
-  name              = "role-policy-attachment"
-  roles             = ["${aws_iam_role.cd.name}"]
-  policy_arn        = "${aws_iam_policy.cd-defaults.arn}"
+  name       = "role-policy-attachment"
+  roles      = ["${aws_iam_role.cd.name}"]
+  policy_arn = "${aws_iam_policy.cd-defaults.arn}"
 }
