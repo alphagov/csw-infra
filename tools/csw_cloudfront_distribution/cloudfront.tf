@@ -18,7 +18,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   aliases = ["${local.target_url}"]
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD", "POST"]
+    allowed_methods  = ["GET", "HEAD", "POST", "DELETE"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "${local.cf_origin_id}"
 
@@ -30,7 +30,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
       }
     }
 
-    viewer_protocol_policy = "allow-all"
+    viewer_protocol_policy = "redirect-to-https"
     min_ttl                = 0
     default_ttl            = 3600
     max_ttl                = 86400
