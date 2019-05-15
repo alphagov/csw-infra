@@ -1,8 +1,8 @@
 resource "aws_waf_ipset" "cyber_ipset" {
   name = "gdsIPSet"
 
-  ip_set_descriptors = ["${data.terraform_remote_state.common_vars.public_ip_set_descriptors}"]
-
+  #ip_set_descriptors = ["${data.terraform_remote_state.common_vars.public_ip_set_descriptors}"]
+  template_body = "${data.terraform_remote_state.common_vars.waf_ip_set}"
 }
 
 resource "aws_waf_rule" "waf_rule" {
