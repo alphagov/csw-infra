@@ -49,7 +49,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   }
 
   # Further restrict with WAF ACL to GDS IPs
-  web_acl_id = "${module.aws_waf_web_acl.waf_acl.id}"
+  web_acl_id = "${aws_waf_web_acl.waf_acl.id}"
 
   tags = {
     Environment = "${var.env}"
