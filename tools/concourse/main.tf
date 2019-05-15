@@ -25,6 +25,7 @@ data "aws_iam_policy_document" "cd-defaults" {
       "iam:GetRolePolicy",
       "iam:GetRole",
       "iam:GetInstanceProfile",
+      "iam:PutRolePolicy"
     ]
 
     resources = [
@@ -52,6 +53,8 @@ data "aws_iam_policy_document" "cd-defaults" {
       "lambda:Update*",
       "lambda:Delete*",
       "lambda:InvokeFunction",
+      "lambda:CreateFunction",
+      "lambda:AddPermission"
     ]
 
     resources = [
