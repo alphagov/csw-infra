@@ -1,7 +1,7 @@
 resource "aws_waf_ipset" "cyber_ipset" {
   name = "gdsIPSet"
 
-  ip_set_descriptors = "${concat(data.terraform_remote_state.common_vars.gds_public_ip_set_descriptors,data.terraform_remote_state.common_vars.user_public_ip_set_descriptors)}"
+  ip_set_descriptors = ["${data.terraform_remote_state.common_vars.public_ip_set_descriptors}"]
 
 }
 
