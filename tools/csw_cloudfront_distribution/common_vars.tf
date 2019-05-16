@@ -10,5 +10,5 @@
 #}
 
 module "common_vars" {
-  source = "git@github.com:alphagov/cyber-security-dns.git//gds/cyber-security-dns/vars/common"
+  source = "git@github.com:alphagov/cyber-security-dns.git//vars/common"
 }
