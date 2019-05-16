@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "cf_cert" {
-  provider          = "use1"
+  provider          = "aws.use1"
   domain_name       = "${local.target_url}"
   validation_method = "DNS"
 
