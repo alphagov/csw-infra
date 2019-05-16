@@ -2,7 +2,7 @@
 locals {
   api_gatway_url_components = "${split("/",var.api_gateway_url)}"
   api_gateway_domain = "${join("",slice(local.api_gatway_url_components,2,3))}"
-  api_gateway_path = "/${join("/",slice(local.api_gatway_url_components,3,length(local.api_gatway_url_components)))}"
+  api_gateway_path = "/${join("/",compact(slice(local.api_gatway_url_components,3,length(local.api_gatway_url_components))))}"
 }
 
 resource "aws_cloudfront_distribution" "cf_distribution" {
