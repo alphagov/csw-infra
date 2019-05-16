@@ -1,6 +1,11 @@
+# Strip protocol from url to get domain
+locals {
+  api_gateway_domain = "${join("",slice(split("://",var.api_gateway_url),1,2))}"
+}
+
 resource "aws_cloudfront_distribution" "cf_distribution" {
   origin {
-    domain_name = "${var.api_gateway_url}"
+    domain_name = "${local.api_gateway_domain}"
     origin_id   = "${local.cf_origin_id}"
 
     custom_origin_config {
