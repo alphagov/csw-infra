@@ -24,11 +24,11 @@ resource_record_value - The value the DNS record needs to have
 resource "aws_route53_record" "cert_validation_record" {
   count   = "${length(aws_acm_certificate.cf_cert.domain_validation_options)}"
   zone_id = "${data.terraform_remote_state.dns_zone.zone_id}"
-  name    = "${aws_acm_certificate.cf_cert.domain_validation_options[count.index].resource_record_name}"
-  type    = "${aws_acm_certificate.cf_cert.domain_validation_options[count.index].resource_record_type}"
-  ttl     = "30"
+  name    = "${lookup(aws_acm_certificate.cf_cert.domain_validation_options[count.index], "resource_record_name")}"
+  type    = "${lookup(aws_acm_certificate.cf_cert.domain_validation_options[count.index], "resource_record_type")}"
+  ttl     = "3600"
 
   records = [
-    "${aws_acm_certificate.cf_cert.domain_validation_options[count.index].resource_record_value}"
+    "${lookup(aws_acm_certificate.cf_cert.domain_validation_options[count.index], "resource_record_value")}"
   ]
 }
