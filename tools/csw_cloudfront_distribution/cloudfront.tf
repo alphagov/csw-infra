@@ -26,7 +26,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   aliases = ["${local.target_url}"]
 
   default_cache_behavior {
-    allowed_methods  = ["GET", "HEAD", "POST", "DELETE"]
+    allowed_methods  = ["HEAD", "GET", "OPTIONS", "DELETE", "POST", "PUT", "PATCH"]
     cached_methods   = ["GET", "HEAD"]
     target_origin_id = "${local.cf_origin_id}"
 
