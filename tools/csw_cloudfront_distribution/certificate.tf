@@ -1,5 +1,5 @@
 resource "aws_acm_certificate" "cf_cert" {
-  region            = "us-east-1"
+  provider          = "use1"
   domain_name       = "${local.target_url}"
   validation_method = "DNS"
 
