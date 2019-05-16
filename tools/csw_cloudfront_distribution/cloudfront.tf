@@ -1,12 +1,15 @@
-# Strip protocol from url to get domain
+# Strip protocol and trailing path from url to get domain
 locals {
-  api_gateway_domain = "${join("",slice(split("://",var.api_gateway_url),1,2))}"
+  api_gatway_url_components = "${split("/",var.api_gateway_url)}"
+  api_gateway_domain = "${join("",slice(local.api_gatway_url_components,2,3))}"
+  api_gateway_path = "/${join("/",slice(local.api_gatway_url_components,3,length(local.api_gatway_url_components)))}"
 }
 
 resource "aws_cloudfront_distribution" "cf_distribution" {
   origin {
     domain_name = "${local.api_gateway_domain}"
     origin_id   = "${local.cf_origin_id}"
+    origin_path = "${local.api_gateway_path}"
 
     custom_origin_config {
       http_port = 80
