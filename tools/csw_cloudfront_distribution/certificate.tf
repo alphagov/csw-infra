@@ -24,6 +24,7 @@ resource "aws_route53_record" "cert_validation_record" {
   zone_id = "${data.terraform_remote_state.dns_zone.zone_id}"
   name    = "${aws_acm_certificate.cf_cert.domain_validation_options.0.resource_record_name}"
   type    = "${aws_acm_certificate.cf_cert.domain_validation_options.0.resource_record_type}"
+  ttl     = "30"
 
   records = [
     "${aws_acm_certificate.cf_cert.domain_validation_options.0.resource_record_value}"
