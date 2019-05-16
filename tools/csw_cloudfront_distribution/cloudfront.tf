@@ -6,6 +6,7 @@ locals {
 }
 
 resource "aws_cloudfront_distribution" "cf_distribution" {
+  depends_on = ["aws_route53_record.cert_validation_record"]
   origin {
     domain_name = "${local.api_gateway_domain}"
     origin_id   = "${local.cf_origin_id}"
