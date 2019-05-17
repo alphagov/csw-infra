@@ -22,6 +22,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
 
   enabled             = true
   is_ipv6_enabled     = true
+  wait_for_deployment = false
   comment             = "Managed by Terraform"
 
   aliases = ["${local.target_url}"]
