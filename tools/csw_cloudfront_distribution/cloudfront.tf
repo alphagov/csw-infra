@@ -21,7 +21,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   }
 
   enabled             = true
-  is_ipv6_enabled     = true
+  is_ipv6_enabled     = false
   wait_for_deployment = false
   comment             = "Managed by Terraform"
 
