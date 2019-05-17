@@ -1,13 +1,13 @@
 resource "aws_waf_ipset" "cyber_ipset" {
-  name = "gdsIPSet"
+  name = "csw-${var.env}-waf-ipset"
 
   ip_set_descriptors = ["${module.common_vars.public_ip_set_descriptors}"]
 }
 
 resource "aws_waf_rule" "waf_rule" {
   depends_on  = ["aws_waf_ipset.cyber_ipset"]
-  name        = "gdsWAFRule"
-  metric_name = "gdsWAFRule"
+  name = "csw-${var.env}-waf-rule"
+  metric_name = "csw-${var.env}-waf-rule"
 
   predicates {
     data_id = "${aws_waf_ipset.cyber_ipset.id}"
@@ -18,16 +18,16 @@ resource "aws_waf_rule" "waf_rule" {
 
 resource "aws_waf_web_acl" "waf_acl" {
   depends_on  = ["aws_waf_ipset.cyber_ipset", "aws_waf_rule.waf_rule"]
-  name        = "tfWebACL"
-  metric_name = "tfWebACL"
+  name        = "csw-${var.env}-waf-acl"
+  metric_name = "csw-${var.env}-waf-acl"
 
   default_action {
-    type = "ALLOW"
+    type = "BLOCK"
   }
 
   rules {
     action {
-      type = "BLOCK"
+      type = "ALLOW"
     }
 
     priority = 1
