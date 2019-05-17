@@ -7,7 +7,8 @@ resource "aws_waf_ipset" "cyber_ipset" {
 resource "aws_waf_rule" "waf_rule" {
   depends_on  = ["aws_waf_ipset.cyber_ipset"]
   name = "csw-${var.env}-waf-rule"
-  metric_name = "csw-${var.env}-waf-rule"
+
+  metric_name = "csw${var.env}WafRule"
 
   predicates {
     data_id = "${aws_waf_ipset.cyber_ipset.id}"
@@ -19,7 +20,7 @@ resource "aws_waf_rule" "waf_rule" {
 resource "aws_waf_web_acl" "waf_acl" {
   depends_on  = ["aws_waf_ipset.cyber_ipset", "aws_waf_rule.waf_rule"]
   name        = "csw-${var.env}-waf-acl"
-  metric_name = "csw-${var.env}-waf-acl"
+  metric_name = "csw${var.env}WafAcl"
 
   default_action {
     type = "BLOCK"
