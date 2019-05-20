@@ -1,4 +1,3 @@
-/*
 # Strip protocol and trailing path from url to get domain
 locals {
   api_gatway_url_components = "${split("/",var.api_gateway_url)}"
@@ -72,4 +71,3 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
     ssl_support_method = "sni-only"
   }
 }
-*/
