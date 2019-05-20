@@ -1,3 +1,4 @@
+/*
 # Strip protocol and trailing path from url to get domain
 locals {
   api_gatway_url_components = "${split("/",var.api_gateway_url)}"
@@ -34,7 +35,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
 
     forwarded_values {
       query_string = true
-
+      headers      = ["CloudFront-Forwdared-Proto"]
       cookies {
         forward = "all"
       }
@@ -70,6 +71,5 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
     acm_certificate_arn = "${aws_acm_certificate.cf_cert.arn}"
     ssl_support_method = "sni-only"
   }
-
-
 }
+*/

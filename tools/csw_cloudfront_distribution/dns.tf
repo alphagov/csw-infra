@@ -1,4 +1,5 @@
-resource "aws_route53_record" "csw_cname" {
+/*
+resource "aws_route53_record" "csw_a_record" {
   zone_id = "${data.terraform_remote_state.dns_zone.zone_id}"
   name    = "${var.sub_domain}"
   type    = "A"
@@ -9,3 +10,4 @@ resource "aws_route53_record" "csw_cname" {
     evaluate_target_health = true
   }
 }
+*/
