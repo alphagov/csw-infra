@@ -20,10 +20,12 @@ resource_record_name - The name of the DNS record to create to validate the cert
 resource_record_type - The type of DNS record to create
 resource_record_value - The value the DNS record needs to have
 */
-output "domain_validation_options" {
-  value = "${aws_acm_certificate.cf_cert.domain_validation_options}"
-}
+
 /*
+# We don't need all the DNS validation records only one of them
+# For some reason creating all of them with count() doesn't work
+# We may want this in future so I've left it commented as something
+# to revisit if we have time.
 resource "aws_route53_record" "cert_validation_record" {
   depends_on  = ["aws_acm_certificate.cf_cert"]
   count       = "${length(aws_acm_certificate.cf_cert.domain_validation_options)}"

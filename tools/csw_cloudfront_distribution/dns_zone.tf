@@ -1,3 +1,4 @@
+# Reference the DNS zone for the required parent domain
 data "terraform_remote_state" "dns_zone" {
   backend = "s3"
   config {
