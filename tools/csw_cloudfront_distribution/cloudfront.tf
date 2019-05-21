@@ -34,7 +34,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
 
     forwarded_values {
       query_string = true
-      headers      = ["CloudFront-Forwdared-Proto"]
+      headers      = ["CloudFront-Forwarded-Proto"]
       cookies {
         forward = "all"
       }
