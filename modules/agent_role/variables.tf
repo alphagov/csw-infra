@@ -9,3 +9,7 @@ variable "environment" {
 variable "region" {}
 
 variable "account_id" {}
+
+variable "chain_account_id" {}
+
+variable "chain_role_name" {}
