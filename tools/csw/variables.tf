@@ -58,3 +58,6 @@ variable "gds_public_cidrs" {
     "35.177.118.205/32",
   ]
 }
+
+variable "chain_account_id" {}
+variable "chain_role_name" {}

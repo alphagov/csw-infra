@@ -76,9 +76,11 @@ module "rds" {
 }
 
 module "lambda_exec_role" {
-  source      = "../../modules/agent_role"
-  prefix      = "${var.prefix}"
-  environment = "${var.environment}"
-  region      = "${var.region}"
-  account_id  = "${var.host_account_id}"
+  source            = "../../modules/agent_role"
+  prefix            = "${var.prefix}"
+  environment       = "${var.environment}"
+  region            = "${var.region}"
+  account_id        = "${var.host_account_id}"
+  chain_account_id  = "${var.chain_account_id}"
+  chain_role_name   = "${var.chain_role_name}"
 }

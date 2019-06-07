@@ -8,7 +8,8 @@
                 "sts:AssumeRole"
             ],
             "Resource": [
-                "arn:aws:iam::*:role/csw-${environment}_CstSecurityInspectorRole"
+                "arn:aws:iam::*:role/csw-${environment}_CstSecurityInspectorRole",
+                "arn:aws:iam::${chain_account_id}:role/${chain_role_name}"
             ]
         },
         {
@@ -67,7 +68,10 @@
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/${environment}/auth/token_secret",
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/${environment}/rds/user",
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/${environment}/credentials/tester/client",
-                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${environment}/credentials/tester/secret"
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/${environment}/credentials/tester/secret",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/chain/account",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/chain/chain_role",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/chain/target_role"
             ]
         },
         {
