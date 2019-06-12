@@ -61,7 +61,8 @@
             "Effect": "Allow",
             "Action": [
                 "ssm:GetParameter",
-                "ssm:GetParameters"
+                "ssm:GetParameters",
+                "ssm:GetParametersByPath"
             ],
             "Resource": [
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/google/api-credentials",
