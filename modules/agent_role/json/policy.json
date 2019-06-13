@@ -61,7 +61,8 @@
             "Effect": "Allow",
             "Action": [
                 "ssm:GetParameter",
-                "ssm:GetParameters"
+                "ssm:GetParameters",
+                "ssm:GetParametersByPath"
             ],
             "Resource": [
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/google/api-credentials",
@@ -71,7 +72,9 @@
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/${environment}/credentials/tester/secret",
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/chain/account",
                 "arn:aws:ssm:${region}:${account_id}:parameter/csw/chain/chain_role",
-                "arn:aws:ssm:${region}:${account_id}:parameter/csw/chain/target_role"
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/chain/target_role",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/audit_defaults",
+                "arn:aws:ssm:${region}:${account_id}:parameter/csw/audit_defaults/*"
             ]
         },
         {
