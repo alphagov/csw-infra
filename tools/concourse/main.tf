@@ -130,6 +130,8 @@ data "aws_iam_policy_document" "cd-defaults" {
       "events:Describe*",
       "events:PutRule",
       "events:PutTargets",
+      "events:RemoveTargets",
+      "events:DeleteRule"
     ]
 
     resources = [
