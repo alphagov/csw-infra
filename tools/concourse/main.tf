@@ -54,7 +54,8 @@ data "aws_iam_policy_document" "cd-defaults" {
       "lambda:Delete*",
       "lambda:InvokeFunction",
       "lambda:CreateFunction",
-      "lambda:AddPermission"
+      "lambda:AddPermission",
+      "lambda:TagResource"
     ]
 
     resources = [
