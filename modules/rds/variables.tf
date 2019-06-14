@@ -11,3 +11,7 @@ variable "private_subnet_ids" {
 
 variable "public_security_group_id" {}
 variable "vpc_id" {}
+
+variable "rds_instance_type" {
+  default = "db.t2.small"
+}

@@ -61,3 +61,14 @@ variable "gds_public_cidrs" {
 
 variable "chain_account_id" {}
 variable "chain_role_name" {}
+
+variable "rds_instance_types" {
+  default = {
+    production  = "db.t3.medium"
+    staging     = "db.t2.small"
+  }
+}
+
+variable "env_type" {
+  default = "staging"
+}
