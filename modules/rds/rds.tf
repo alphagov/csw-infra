@@ -24,6 +24,7 @@ resource "aws_db_instance" "rds" {
   storage_encrypted         = true                                                                                 # you should always do this
   storage_type              = "gp2"
   vpc_security_group_ids    = ["${aws_security_group.rds_security_group.id}"]
+  apply_immediately         = true
 
   tags {
     Name = "${var.prefix}-rds"
