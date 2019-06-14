@@ -13,7 +13,7 @@ resource "aws_db_instance" "rds" {
   engine                    = "postgres"
   engine_version            = "9.5"
   identifier                = "${var.prefix}-postgres"
-  instance_class            = "db.t2.small"
+  instance_class            = "${var.rds_instance_type}"
   multi_az                  = false
   name                      = "${var.prefix}Postgres"
   final_snapshot_identifier = "${var.prefix}Postgres-${replace(timestamp(),var.regex,var.replace)}-final-snapshot"
