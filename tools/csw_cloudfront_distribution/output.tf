@@ -13,3 +13,7 @@ output "target_url" {
 output "waf_acl_id" {
   value = "${aws_waf_web_acl.waf_acl.id}"
 }
+
+output "prometheus_nat_gateway" {
+  value = "${data.terraform_remote_state.prometheus_state.nat_gateway}"
+}
