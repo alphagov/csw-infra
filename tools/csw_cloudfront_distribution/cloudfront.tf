@@ -51,14 +51,15 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   price_class = "PriceClass_100"
 
   # Restrict traffic to IPS identified as UK
-  # restrictions {
-  #  geo_restriction {
-  #    restriction_type = "whitelist"
-  #    locations        = ["GB","US"]
-  #  }
-  # }
-  # We had to open this to US for uptimerobot and we'd have to open it to Ireland for Prometheus
-  # It's no longer doing the job we intended. We could add it back or switch to a blacklist
+  restrictions {
+    geo_restriction {
+      restriction_type = "whitelist"
+      locations        = ["GB","US","IE"]
+    }
+    # We had to open this to US for uptimerobot and Ireland for Prometheus
+    # For some reason we can't remove it altogether because restrictions is a required field for updates
+  }
+
 
   # Further restrict with WAF ACL to GDS IPs
   web_acl_id = "${aws_waf_web_acl.waf_acl.id}"
