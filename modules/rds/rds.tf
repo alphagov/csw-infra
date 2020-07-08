@@ -7,7 +7,7 @@ variable "replace" {
 }
 
 resource "aws_db_instance" "rds" {
-  allocated_storage         = 16                                                                                   # gigabytes
+  allocated_storage         = 32                                                                                   # gigabytes
   backup_retention_period   = 7                                                                                    # in days
   db_subnet_group_name      = "${aws_db_subnet_group.rds_subnet_group.name}"
   engine                    = "postgres"
