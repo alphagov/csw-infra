@@ -25,7 +25,7 @@ resource "aws_db_instance" "rds" {
   storage_type              = "gp2"
   vpc_security_group_ids    = [aws_security_group.rds_security_group.id]
 
-  tags {
+  tags = {
     Name = "${var.prefix}-rds"
   }
 }
