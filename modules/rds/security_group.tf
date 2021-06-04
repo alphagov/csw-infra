@@ -17,7 +17,7 @@ resource "aws_security_group" "rds_security_group" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.prefix}-rds-security-group"
   }
 }

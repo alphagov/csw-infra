@@ -6,7 +6,7 @@ resource "aws_route_table" "public_route_table" {
     gateway_id = var.igw_id
   }
 
-  tags {
+  tags = {
     Name = "${var.prefix}-public-routes-${var.subnet_zone}"
   }
 }

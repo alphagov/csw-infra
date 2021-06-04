@@ -1,7 +1,7 @@
 resource "aws_route_table" "private_route_table" {
   vpc_id = var.vpc_id
 
-  tags {
+  tags = {
     Name = "${var.prefix}-private-routes-${var.subnet_zone}"
   }
 }

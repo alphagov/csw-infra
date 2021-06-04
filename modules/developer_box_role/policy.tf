@@ -1,7 +1,7 @@
 data "template_file" "policy" {
   template = file("${path.module}/json/policy.json")
 
-  vars {
+  vars = {
     prefix      = var.prefix
     environment = var.environment
     region      = var.region

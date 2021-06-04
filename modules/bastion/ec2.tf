@@ -8,7 +8,7 @@ resource "aws_instance" "bastion" {
   associate_public_ip_address = true
   source_dest_check           = false
 
-  tags {
+  tags = {
     Name = "${var.prefix}-bastion"
   }
 }
