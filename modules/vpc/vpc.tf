@@ -6,7 +6,7 @@ resource "aws_vpc" "vpc" {
   ## enable_dns_support to be set to false once we have our own resolvers
   enable_dns_support = true
 
-  tags {
+  tags = {
     Name        = "${var.prefix}_vpc"
     Tool        = var.tool
     Environment = var.environment

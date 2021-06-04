@@ -7,8 +7,8 @@ variable "replace" {
 }
 
 resource "aws_db_instance" "rds" {
-  allocated_storage         = 32                                                                                   # gigabytes
-  backup_retention_period   = 7                                                                                    # in days
+  allocated_storage         = 32 # gigabytes
+  backup_retention_period   = 7  # in days
   db_subnet_group_name      = aws_db_subnet_group.rds_subnet_group.name
   engine                    = "postgres"
   engine_version            = "9.5"
@@ -16,12 +16,12 @@ resource "aws_db_instance" "rds" {
   instance_class            = var.rds_instance_type
   multi_az                  = false
   name                      = "${var.prefix}Postgres"
-  final_snapshot_identifier = "${var.prefix}Postgres-${replace(timestamp(),var.regex,var.replace)}-final-snapshot"
+  final_snapshot_identifier = "${var.prefix}Postgres-${replace(timestamp(), var.regex, var.replace)}-final-snapshot"
   username                  = "root"
   password                  = var.password
   port                      = 5432
   publicly_accessible       = false
-  storage_encrypted         = true                                                                                 # you should always do this
+  storage_encrypted         = true # you should always do this
   storage_type              = "gp2"
   vpc_security_group_ids    = [aws_security_group.rds_security_group.id]
 

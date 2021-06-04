@@ -13,7 +13,7 @@ resource "aws_security_group" "developer_security_group" {
   }
 
   egress {
-    from_port = 5432  # Postgres
+    from_port = 5432 # Postgres
     to_port   = 5432
     protocol  = "tcp"
 

@@ -5,8 +5,8 @@ resource "aws_waf_ipset" "cyber_ipset" {
 }
 
 resource "aws_waf_rule" "waf_rule" {
-  depends_on  = [aws_waf_ipset.cyber_ipset]
-  name = "csw-${var.env}-waf-rule"
+  depends_on = [aws_waf_ipset.cyber_ipset]
+  name       = "csw-${var.env}-waf-rule"
 
   metric_name = "csw${var.env}WafRule"
 

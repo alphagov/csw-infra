@@ -40,11 +40,11 @@ resource "aws_route53_record" "cert_validation_record" {
 }
 */
 resource "aws_route53_record" "cert_validation_record" {
-  depends_on  = [aws_acm_certificate.cf_cert]
-  zone_id     = data.terraform_remote_state.dns_zone.zone_id
-  name        = lookup(aws_acm_certificate.cf_cert.domain_validation_options[0], "resource_record_name")
-  type        = lookup(aws_acm_certificate.cf_cert.domain_validation_options[0], "resource_record_type")
-  ttl         = "86400"
+  depends_on = [aws_acm_certificate.cf_cert]
+  zone_id    = data.terraform_remote_state.dns_zone.zone_id
+  name       = lookup(aws_acm_certificate.cf_cert.domain_validation_options[0], "resource_record_name")
+  type       = lookup(aws_acm_certificate.cf_cert.domain_validation_options[0], "resource_record_type")
+  ttl        = "86400"
 
   records = [
     lookup(aws_acm_certificate.cf_cert.domain_validation_options[0], "resource_record_value")

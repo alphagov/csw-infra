@@ -1,8 +1,8 @@
 # Strip protocol and trailing path from url to get domain
 locals {
-  api_gatway_url_components = split("/",var.api_gateway_url)
-  api_gateway_domain = join("",slice(local.api_gatway_url_components,2,3))
-  api_gateway_path = join("/",compact(slice(local.api_gatway_url_components,3,length(local.api_gatway_url_components))))
+  api_gatway_url_components = split("/", var.api_gateway_url)
+  api_gateway_domain        = join("", slice(local.api_gatway_url_components, 2, 3))
+  api_gateway_path          = join("/", compact(slice(local.api_gatway_url_components, 3, length(local.api_gatway_url_components))))
 }
 
 resource "aws_cloudfront_distribution" "cf_distribution" {
@@ -13,10 +13,10 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
     origin_path = local.api_gateway_path
 
     custom_origin_config {
-      http_port = 80
-      https_port = 443
+      http_port              = 80
+      https_port             = 443
       origin_protocol_policy = "https-only"
-      origin_ssl_protocols = ["TLSv1.2"]
+      origin_ssl_protocols   = ["TLSv1.2"]
     }
   }
 
@@ -54,7 +54,7 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   restrictions {
     geo_restriction {
       restriction_type = "whitelist"
-      locations        = ["GB","US"]
+      locations        = ["GB", "US"]
     }
   }
 
@@ -68,6 +68,6 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   viewer_certificate {
     #cloudfront_default_certificate = true
     acm_certificate_arn = aws_acm_certificate.cf_cert.arn
-    ssl_support_method = "sni-only"
+    ssl_support_method  = "sni-only"
   }
 }
