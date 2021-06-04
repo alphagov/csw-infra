@@ -10,7 +10,7 @@ resource "aws_security_group" "rds_security_group" {
     to_port   = 5432
     protocol  = "tcp"
 
-    cidr_blocks = [var.private_subnet_cidr_blocks]
+    cidr_blocks = var.private_subnet_cidr_blocks
 
     security_groups = [
       var.public_security_group_id,

@@ -85,7 +85,7 @@ resource "aws_instance" "developer" {
   source_dest_check           = false
   iam_instance_profile        = aws_iam_instance_profile.developer_box_instance_profile.name
 
-  tags {
+  tags = {
     Name = "${var.environment}-developer"
   }
 }
