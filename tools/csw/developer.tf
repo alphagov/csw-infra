@@ -55,7 +55,7 @@ resource "aws_security_group" "developer_security_group" {
 
   vpc_id = module.vpc.vpc_id_out
 
-  tags {
+  tags = {
     Name = "${var.tool}-${var.environment}-sg-developer"
   }
 }

@@ -53,7 +53,7 @@ resource "aws_security_group" "public_security_group" {
     ]
   }
 
-  tags {
+  tags = {
     Name = "${var.tool}-${var.environment}-sg-public"
   }
 }
