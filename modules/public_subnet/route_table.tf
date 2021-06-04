@@ -1,11 +1,11 @@
 resource "aws_route_table" "public_route_table" {
-  vpc_id = "${var.vpc_id}"
+  vpc_id = var.vpc_id
 
   route {
     cidr_block     = "0.0.0.0/0"
-    nat_gateway_id = "${module.nat_gateway.ngw_id_out}"
+    nat_gateway_id = module.nat_gateway.ngw_id_out
 
-    /*gateway_id = "${var.igw_id}"*/
+    /*gateway_id = var.igw_id*/
   }
 
   tags {

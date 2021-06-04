@@ -18,8 +18,8 @@ resource "aws_security_group" "developer_security_group" {
     protocol  = "tcp"
 
     cidr_blocks = [
-      "${module.private_subnet_1.private_subnet_cidr_block_out}",
-      "${module.private_subnet_2.private_subnet_cidr_block_out}",
+      module.private_subnet_1.private_subnet_cidr_block_out,
+      module.private_subnet_2.private_subnet_cidr_block_out,
     ]
   }
 
@@ -53,7 +53,7 @@ resource "aws_security_group" "developer_security_group" {
     ]
   }
 
-  vpc_id = "${module.vpc.vpc_id_out}"
+  vpc_id = module.vpc.vpc_id_out
 
   tags {
     Name = "${var.tool}-${var.environment}-sg-developer"
@@ -62,28 +62,28 @@ resource "aws_security_group" "developer_security_group" {
 
 module "developer_box_role" {
   source      = "../../modules/developer_box_role"
-  prefix      = "${var.prefix}"
-  environment = "${var.environment}"
-  region      = "${var.region}"
-  bucket_name = "${var.bucket_name}"
-  account_id  = "${var.host_account_id}"
+  prefix      = var.prefix
+  environment = var.environment
+  region      = var.region
+  bucket_name = var.bucket_name
+  account_id  = var.host_account_id
 }
 
 resource "aws_iam_instance_profile" "developer_box_instance_profile" {
   name = "${var.prefix}-developer_box_instance_profile"
-  role = "${module.developer_box_role.role_name}"
+  role = module.developer_box_role.role_name
 }
 
 resource "aws_instance" "developer" {
   ami                         = "${lookup(var.amis, var.region)}"
   availability_zone           = "${var.region}a"
   instance_type               = "t2.micro"
-  key_name                    = "${var.ssh_key_name}"
-  vpc_security_group_ids      = ["${aws_security_group.developer_security_group.id}"]
-  subnet_id                   = "${module.public_subnet_1.public_subnet_id_out}"
+  key_name                    = var.ssh_key_name
+  vpc_security_group_ids      = [aws_security_group.developer_security_group.id]
+  subnet_id                   = module.public_subnet_1.public_subnet_id_out
   associate_public_ip_address = false
   source_dest_check           = false
-  iam_instance_profile        = "${aws_iam_instance_profile.developer_box_instance_profile.name}"
+  iam_instance_profile        = aws_iam_instance_profile.developer_box_instance_profile.name
 
   tags {
     Name = "${var.environment}-developer"

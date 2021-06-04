@@ -1,5 +1,5 @@
 variable "availability_zones" {
-  type = "list"
+  type = list
 }
 
 variable "postgres_root_password" {}

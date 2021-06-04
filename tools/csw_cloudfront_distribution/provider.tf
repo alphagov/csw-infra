@@ -2,7 +2,7 @@
 # Setting region to stop Terraform prompting
 
 provider "aws" {
-  region = "${var.region}"
+  region = var.region
 }
 
 provider "aws" {

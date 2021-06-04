@@ -1,5 +1,5 @@
 resource "aws_vpc" "vpc" {
-  cidr_block = "${var.vpc_cidr_block}"
+  cidr_block = var.vpc_cidr_block
 
   enable_dns_hostnames = false
 
@@ -8,7 +8,7 @@ resource "aws_vpc" "vpc" {
 
   tags {
     Name        = "${var.prefix}_vpc"
-    Tool        = "${var.tool}"
-    Environment = "${var.environment}"
+    Tool        = var.tool
+    Environment = var.environment
   }
 }

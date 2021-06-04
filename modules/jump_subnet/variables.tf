@@ -11,5 +11,5 @@ variable "ssh_public_key_path" {}
 variable "public_security_group_id" {}
 
 variable "amis" {
-  type = "map"
+  type = map
 }

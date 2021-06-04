@@ -1,16 +1,16 @@
 # Strip protocol and trailing path from url to get domain
 locals {
-  api_gatway_url_components = "${split("/",var.api_gateway_url)}"
-  api_gateway_domain = "${join("",slice(local.api_gatway_url_components,2,3))}"
-  api_gateway_path = "/${join("/",compact(slice(local.api_gatway_url_components,3,length(local.api_gatway_url_components))))}"
+  api_gatway_url_components = split("/",var.api_gateway_url)
+  api_gateway_domain = join("",slice(local.api_gatway_url_components,2,3))
+  api_gateway_path = join("/",compact(slice(local.api_gatway_url_components,3,length(local.api_gatway_url_components))))
 }
 
 resource "aws_cloudfront_distribution" "cf_distribution" {
-  depends_on = ["aws_route53_record.cert_validation_record"]
+  depends_on = [aws_route53_record.cert_validation_record]
   origin {
-    domain_name = "${local.api_gateway_domain}"
-    origin_id   = "${local.cf_origin_id}"
-    origin_path = "${local.api_gateway_path}"
+    domain_name = local.api_gateway_domain
+    origin_id   = local.cf_origin_id
+    origin_path = local.api_gateway_path
 
     custom_origin_config {
       http_port = 80
@@ -25,12 +25,12 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   wait_for_deployment = false
   comment             = "Managed by Terraform"
 
-  aliases = ["${local.target_url}"]
+  aliases = [local.target_url]
 
   default_cache_behavior {
     allowed_methods  = ["HEAD", "GET", "OPTIONS", "DELETE", "POST", "PUT", "PATCH"]
     cached_methods   = ["GET", "HEAD"]
-    target_origin_id = "${local.cf_origin_id}"
+    target_origin_id = local.cf_origin_id
 
     forwarded_values {
       query_string = true
@@ -59,15 +59,15 @@ resource "aws_cloudfront_distribution" "cf_distribution" {
   }
 
   # Further restrict with WAF ACL to GDS IPs
-  web_acl_id = "${aws_waf_web_acl.waf_acl.id}"
+  web_acl_id = aws_waf_web_acl.waf_acl.id
 
   tags = {
-    Environment = "${var.env}"
+    Environment = var.env
   }
 
   viewer_certificate {
     #cloudfront_default_certificate = true
-    acm_certificate_arn = "${aws_acm_certificate.cf_cert.arn}"
+    acm_certificate_arn = aws_acm_certificate.cf_cert.arn
     ssl_support_method = "sni-only"
   }
 }

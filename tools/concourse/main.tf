@@ -11,7 +11,7 @@ data "aws_iam_policy_document" "assume-role" {
     condition {
       test     = "IpAddress"
       variable = "aws:SourceIp"
-      values   = ["${var.source_cidrs}"]
+      values   = [var.source_cidrs]
     }
   }
 }
