@@ -13,7 +13,7 @@ variable "cd_account" {
 
 variable "source_cidrs" {
   description = "Source CIDRs that are allowed to perform the assume role"
-  type        = "list"
+  type        = list
 
   default = [
     "213.86.153.212/32",

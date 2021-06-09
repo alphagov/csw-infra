@@ -1,5 +1,5 @@
 variable "availability_zones" {
-  type = "list"
+  type = list
 }
 
 variable "postgres_root_password" {}
@@ -64,8 +64,8 @@ variable "chain_role_name" {}
 
 variable "rds_instance_types" {
   default = {
-    production  = "db.t2.medium"
-    staging     = "db.t2.small"
+    production = "db.t2.medium"
+    staging    = "db.t2.small"
   }
 }
 
