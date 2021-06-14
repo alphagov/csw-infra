@@ -15,3 +15,6 @@ variable "vpc_id" {}
 variable "rds_instance_type" {
   default = "db.t2.small"
 }
+variable "rds_allocated_storage" {
+  default = 32
+}
