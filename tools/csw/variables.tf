@@ -64,8 +64,15 @@ variable "chain_role_name" {}
 
 variable "rds_instance_types" {
   default = {
-    production = "db.t2.medium"
+    production = "db.t2.large"
     staging    = "db.t2.small"
+  }
+}
+
+variable "rds_allocated_storage" {
+  default = {
+    production = 64
+    staging    = 32
   }
 }
 

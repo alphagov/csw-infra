@@ -57,11 +57,12 @@ module "private_subnet_2" {
 }
 
 module "rds" {
-  source            = "../../modules/rds/"
-  vpc_id            = module.vpc.vpc_id_out
-  prefix            = "${var.tool}${var.environment}"
-  password          = var.postgres_root_password
-  rds_instance_type = "${lookup(var.rds_instance_types, var.env_type)}"
+  source                = "../../modules/rds/"
+  vpc_id                = module.vpc.vpc_id_out
+  prefix                = "${var.tool}${var.environment}"
+  password              = var.postgres_root_password
+  rds_instance_type     = "${lookup(var.rds_instance_types, var.env_type)}"
+  rds_allocated_storage = "${lookup(var.rds_allocated_storage, var.env_type)}"
 
   private_subnet_cidr_blocks = [
     module.private_subnet_1.private_subnet_cidr_block_out,
