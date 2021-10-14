@@ -71,7 +71,7 @@ variable "rds_instance_types" {
 
 variable "rds_allocated_storage" {
   default = {
-    production = 64
+    production = 128
     staging    = 32
   }
 }
