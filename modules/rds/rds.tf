@@ -11,7 +11,7 @@ resource "aws_db_instance" "rds" {
   backup_retention_period   = 7  # in days
   db_subnet_group_name      = aws_db_subnet_group.rds_subnet_group.name
   engine                    = "postgres"
-  engine_version            = "12.5"
+  engine_version            = "12.7"
   identifier                = "${var.prefix}-postgres"
   instance_class            = var.rds_instance_type
   multi_az                  = false
