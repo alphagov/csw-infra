@@ -4,6 +4,6 @@
   "version": "1.0.0",
   "private": false,
   "engines": {
-    "node": "^8.9.1"
+    "node": "^17.0.0"
   }
 }
