@@ -1,9 +1,9 @@
 {
   "name": "csw-infra",
   "description": "Terraform infrastructure for CST tools",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "private": false,
   "engines": {
-    "node": "^8.9.1"
+    "node": "^16.9.1"
   }
 }
